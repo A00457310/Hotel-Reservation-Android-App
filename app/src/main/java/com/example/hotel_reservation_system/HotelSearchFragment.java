@@ -58,10 +58,10 @@ public class HotelSearchFragment extends Fragment {
 
         //For Shared Pref Demo
         nameEditText = view.findViewById(R.id.name_edit_text);
-        retrieveButton = view.findViewById(R.id.retrieve_button);
-        clearButton = view.findViewById(R.id.clear_button);
+//        retrieveButton = view.findViewById(R.id.retrieve_button);
+//        clearButton = view.findViewById(R.id.clear_button);
 
-        confirmSearchButton = view.findViewById(R.id.confirm_my_search_button);
+//        confirmSearchButton = view.findViewById(R.id.confirm_my_search_button);
         searchButton = view.findViewById(R.id.search_button);
 
         checkInDatePicker = view.findViewById(R.id.checkin_date_picker_view);
@@ -71,29 +71,29 @@ public class HotelSearchFragment extends Fragment {
         titleTextView.setText(R.string.welcome_text);
 
         //Set up the text of confirm text box
-        confirmSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkInDate = getDateFromCalendar(checkInDatePicker);
-                checkOutDate = getDateFromCalendar(checkOutDatePicker);
-                //Get input of guests count
-                numberOfGuests = guestsCountEditText.getText().toString();
-                guestName = nameEditText.getText().toString();
-
-
-                // Saving into shared preferences
-                sharedPreferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(name, guestName);
-                editor.putString(guestsCount, numberOfGuests);
-                editor.commit();
-
-
-
-                searchTextConfirmationTextView.setText("Dear Customer, Your check in date is " + checkInDate + ", " +
-                        "your checkout date is " + checkOutDate + ".The number of guests are " + numberOfGuests);
-            }
-        });
+//        confirmSearchButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                checkInDate = getDateFromCalendar(checkInDatePicker);
+//                checkOutDate = getDateFromCalendar(checkOutDatePicker);
+//                //Get input of guests count
+//                numberOfGuests = guestsCountEditText.getText().toString();
+//                guestName = nameEditText.getText().toString();
+//
+//
+//                // Saving into shared preferences
+//                sharedPreferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString(name, guestName);
+//                editor.putString(guestsCount, numberOfGuests);
+//                editor.commit();
+//
+//
+//
+//                searchTextConfirmationTextView.setText("Dear Customer, Your check in date is " + checkInDate + ", " +
+//                        "your checkout date is " + checkOutDate + ".The number of guests are " + numberOfGuests);
+//            }
+//        });
 
         //Search Button click Listener
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -103,11 +103,13 @@ public class HotelSearchFragment extends Fragment {
                 checkOutDate = getDateFromCalendar(checkOutDatePicker);
                 //Get input of guests count
                 numberOfGuests = guestsCountEditText.getText().toString();
+                guestName = nameEditText.getText().toString();
 
                 Bundle bundle = new Bundle();
                 bundle.putString("check in date", checkInDate);
                 bundle.putString("check out date", checkOutDate);
                 bundle.putString("number of guests", numberOfGuests);
+                bundle.putString("guest name", guestName);
 
 
                 // set Fragment class Arguments
@@ -125,29 +127,29 @@ public class HotelSearchFragment extends Fragment {
 
         // Retrieve Button Click Listener
 
-        retrieveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedPreferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
-
-                if (sharedPreferences.contains(name)) {
-                    nameEditText.setText(sharedPreferences.getString(name, ""));
-                }
-                if (sharedPreferences.contains(guestsCount)) {
-                    guestsCountEditText.setText(sharedPreferences.getString(guestsCount, ""));
-
-                }
-            }
-        });
+//        retrieveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sharedPreferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+//
+//                if (sharedPreferences.contains(name)) {
+//                    nameEditText.setText(sharedPreferences.getString(name, ""));
+//                }
+//                if (sharedPreferences.contains(guestsCount)) {
+//                    guestsCountEditText.setText(sharedPreferences.getString(guestsCount, ""));
+//
+//                }
+//            }
+//        });
 
         //Clear Button Click Listener
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guestsCountEditText.setText("");
-                nameEditText.setText("");
-            }
-        });
+//        clearButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                guestsCountEditText.setText("");
+//                nameEditText.setText("");
+//            }
+//        });
     }
 
     // Function to get the date object

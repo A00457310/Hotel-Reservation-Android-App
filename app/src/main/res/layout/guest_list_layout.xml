@@ -22,7 +22,7 @@
             android:gravity="start"
             android:text="Name"
             android:textAlignment="textStart"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -46,7 +46,7 @@
             android:gravity="start"
             android:text="Gender"
             android:textAlignment="textStart"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/guest_name_text_view"
             app:layout_constraintTop_toBottomOf="@id/guest_name_text_view" />

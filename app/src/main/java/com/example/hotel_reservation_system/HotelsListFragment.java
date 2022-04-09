@@ -51,9 +51,10 @@ public class HotelsListFragment extends Fragment implements ItemClickListener {
         String checkInDate = getArguments().getString("check in date");
         String checkOutDate = getArguments().getString("check out date");
         String numberOfGuests = getArguments().getString("number of guests");
+        String guestName = getArguments().getString("guest name");
 
         //Set up the header
-        headingTextView.setText("Welcome user, displaying hotel for " + numberOfGuests + " guests staying from " + checkInDate +
+        headingTextView.setText("Welcome " + guestName + ", \nDisplaying hotel for " + numberOfGuests + " guests staying from " + checkInDate +
                 " to " + checkOutDate);
 
 
@@ -90,7 +91,7 @@ public class HotelsListFragment extends Fragment implements ItemClickListener {
             public void success(GetHotelResponse userListResponse, Response response) {
                 // in this method we will get the response from API
 //                System.out.println(userListResponses.);
-                Log.d("MyApp","I am here");
+                Log.d("MyApp", "I am here");
                 Log.d("MyApp", "^^^^^^^^^^^^^^^^^^^^ -> " + userListResponse.getMessage());
                 System.out.println("^^^^^^^^^^^^^^^^^^^^ -> " + userListResponse.getMessage());
 //                userListResponses.stream().forEach(hotelListData -> System.out.println(hotelListData.getName() + "^^^^^^^^^^" + hotelListData.getRating().toString()));
