@@ -1,6 +1,5 @@
 package com.example.hotel_reservation_system;
 
-import java.util.Date;
 import java.util.List;
 
 public class ReserveRoomRequestBody {
