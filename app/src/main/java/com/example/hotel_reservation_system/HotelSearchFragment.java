@@ -98,6 +98,13 @@ public class HotelSearchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                SimpleDateFormat checkInD = getDateFromCalendarAsDate(checkInDatePicker);
+//                SimpleDateFormat checkOutD = getDateFromCalendarAsDate(checkOutDatePicker);
+//
+//                if(che){
+//
+//                }
+
                 checkInDate = getDateFromCalendar(checkInDatePicker);
                 checkOutDate = getDateFromCalendar(checkOutDatePicker);
                 //Get input of guests count
@@ -164,6 +171,19 @@ public class HotelSearchFragment extends Fragment {
         String formattedDate = simpleDateFormat.format(calendar.getTime());
 
         return formattedDate;
+    }
+
+    private SimpleDateFormat getDateFromCalendarAsDate(DatePicker datePicker) {
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        return simpleDateFormat;
     }
 
 
