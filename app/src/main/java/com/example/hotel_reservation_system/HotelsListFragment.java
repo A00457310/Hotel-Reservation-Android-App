@@ -132,6 +132,7 @@ public class HotelsListFragment extends Fragment implements ItemClickListener {
 
         Bundle bundle = new Bundle();
         bundle.putString("hotel name", hotelName);
+        bundle.putString("hotel id", hotelListData.getId().toString());
         bundle.putString("hotel price", price);
         bundle.putString("hotel availability", availability);
         bundle.putString("number of guests", getArguments().getString("number of guests"));

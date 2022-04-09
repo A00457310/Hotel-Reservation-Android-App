@@ -5,10 +5,41 @@ package com.example.hotel_reservation_system;
 public class HotelListData {
 
     String name;
+    Integer id;
+    String url;
+
     Integer noOfRooms;
+
     String price;
     Double rating;
     Boolean availability;
+
+    public HotelListData(String name, Integer id, String url, Integer noOfRooms, String price, Double rating, Boolean availability) {
+        this.name = name;
+        this.id = id;
+        this.url = url;
+        this.noOfRooms = noOfRooms;
+        this.price = price;
+        this.rating = rating;
+        this.availability = availability;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public HotelListData(String name, String url, Integer noOfRooms, String price, Double rating, Boolean availability) {
+        this.name = name;
+        this.url = url;
+        this.noOfRooms = noOfRooms;
+        this.price = price;
+        this.rating = rating;
+        this.availability = availability;
+    }
 
     public HotelListData(String name, Integer noOfRooms, String price, Double rating, Boolean availability) {
         this.name = name;
@@ -19,6 +50,14 @@ public class HotelListData {
     }
 
     public HotelListData() {
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getName() {

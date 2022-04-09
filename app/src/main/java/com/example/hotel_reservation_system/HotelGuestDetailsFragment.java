@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,8 @@ public class HotelGuestDetailsFragment extends Fragment {
 
     View view;
     List<GuestDetail> guestDetailList = new ArrayList<>();
+    String hotelName, hotelPrice, hotelAvailability, hotelId;
+    Integer numberOfGuests;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,10 +45,11 @@ public class HotelGuestDetailsFragment extends Fragment {
         TextView hotelRecapTextView = view.findViewById(R.id.hotel_recap_text_view);
         Button submitGuestDetailsButton = view.findViewById(R.id.submit_guest_detail_list_button);
 
-        String hotelName = getArguments().getString("hotel name");
-        String hotelPrice = getArguments().getString("hotel price");
-        String hotelAvailability = getArguments().getString("hotel availability");
-        Integer numberOfGuests = Integer.valueOf(getArguments().getString("number of guests"));
+        hotelName = getArguments().getString("hotel name");
+        hotelPrice = getArguments().getString("hotel price");
+        hotelId = getArguments().getString("hotel id");
+        hotelAvailability = getArguments().getString("hotel availability");
+        numberOfGuests = Integer.valueOf(getArguments().getString("number of guests"));
 
 
         hotelRecapTextView.setText("You have selected " + hotelName + ". The cost will be $ " + hotelPrice + " and availability is " + hotelAvailability);
@@ -70,18 +74,24 @@ public class HotelGuestDetailsFragment extends Fragment {
                     System.out.println("^^^^^^^^" + guestDetailList.get(i).getName());
                 }
 
-                ReserveRoomRequestBody body = new ReserveRoomRequestBody();
-                body.setCheckInDate("2022-03-12T01:08:48.470Z");
-                body.setCheckOutDate("2022-03-12T01:08:48.470Z");
-                body.setGuests(guestDetailList);
-                body.setUserId(20);
-                body.setHotelId(19);
-                body.setNoOfRoomsBooked(3);
+                ReserveRoomRequestBody body = getReserveRoomRequestBody();
 
                 reserveRoom(body);
             }
         });
 
+    }
+
+    @NonNull
+    private ReserveRoomRequestBody getReserveRoomRequestBody() {
+        ReserveRoomRequestBody body = new ReserveRoomRequestBody();
+        body.setCheckInDate("2022-03-12T01:08:48.470Z");
+        body.setCheckOutDate("2022-03-12T01:08:48.470Z");
+        body.setGuests(guestDetailList);
+        body.setUserId(20);
+        body.setHotelId(Integer.parseInt(hotelId));
+        body.setNoOfRoomsBooked(numberOfGuests);
+        return body;
     }
 
     private void reserveRoom(ReserveRoomRequestBody body) {
@@ -92,7 +102,24 @@ public class HotelGuestDetailsFragment extends Fragment {
                 Log.d("MyApp", "I am here");
                 Log.d("MyApp", "^^^^^^^^^^^^^^^^^^^^ -> " + reserveRoomApiResponse.getMessage());
                 System.out.println("^^^^^^^^^^^^^^^^^^^^ -> " + reserveRoomApiResponse.getData().getConfirmationId());
-                Toast.makeText(getActivity(), "Booking Confirmed : " + reserveRoomApiResponse.getData().getConfirmationId(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "Booking Confirmed : " + reserveRoomApiResponse.getData().getConfirmationId(), Toast.LENGTH_LONG).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("hotel name", hotelName);
+                bundle.putString("hotel price", hotelPrice);
+                bundle.putString("number of guests", String.valueOf(numberOfGuests));
+//                bundle.putString("guest name", guestName);
+                bundle.putString("booking id", reserveRoomApiResponse.getData().getConfirmationId());
+
+
+                // set Fragment class Arguments
+                BookingFragment bookingFragment = new BookingFragment();
+                bookingFragment.setArguments(bundle);
+
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_layout, bookingFragment);
+                fragmentTransaction.remove(HotelGuestDetailsFragment.this);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
 
             @Override

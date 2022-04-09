@@ -9,7 +9,7 @@ public class Api {
         // change your base URL
         RestAdapter adapter = new RestAdapter.Builder()
 //                .setEndpoint("http://Hotelreservation-env.eba-avazyhss.us-east-1.elasticbeanstalk.com/") //Set the Root URL
-                .setEndpoint("http://192.168.2.24:8081") //Set the Root URL
+                .setEndpoint("http://140.184.33.3:8081") //Set the Root URL
 //                .setEndpoint("https://7712-134-41-196-67.ngrok.io") //Set the Root URL
                 .build(); //Finally building the adapter
 

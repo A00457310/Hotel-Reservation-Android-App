@@ -32,11 +32,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Guests Name"
-            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@id/guest_name_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guest_name_text_view"
             app:layout_constraintTop_toTopOf="@id/guest_name_text_view" />
+
+        <TextView
+            android:id="@+id/email_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="start"
+            android:text="Email"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/guest_name_text_view"
+            app:layout_constraintTop_toBottomOf="@id/guest_name_text_view" />
+
+        <EditText
+            android:id="@+id/guest_email_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Your Email"
+            app:layout_constraintBottom_toBottomOf="@id/email_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/email_text_view"
+            app:layout_constraintTop_toTopOf="@id/email_text_view" />
 
         <TextView
             android:id="@+id/gender_text_view"
@@ -48,18 +70,21 @@
             android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@id/guest_name_text_view"
-            app:layout_constraintTop_toBottomOf="@id/guest_name_text_view" />
+            app:layout_constraintStart_toStartOf="@id/email_text_view"
+            app:layout_constraintTop_toBottomOf="@id/email_text_view" />
 
-        <EditText
-            android:id="@+id/guest_gender_edit_text"
+        <Spinner
+            android:id="@+id/gender_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Your Gender"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="@id/gender_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/gender_text_view"
-            app:layout_constraintTop_toTopOf="@id/gender_text_view" />
+            app:layout_constraintTop_toTopOf="@id/gender_text_view"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
